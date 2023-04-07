@@ -7,6 +7,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,6 +68,16 @@
       <updated>1680710836784</updated>
       <workItem from="1680710843892" duration="3000" />
       <workItem from="1680711284976" duration="3360000" />
+      <workItem from="1680722401148" duration="681000" />
+      <workItem from="1680776643608" duration="1372000" />
+      <workItem from="1680778467091" duration="2232000" />
+      <workItem from="1680782531840" duration="2143000" />
+      <workItem from="1680784863508" duration="173000" />
+      <workItem from="1680785307618" duration="5224000" />
+      <workItem from="1680849172973" duration="1706000" />
+      <workItem from="1680850915626" duration="2808000" />
+      <workItem from="1680858573778" duration="3723000" />
+      <workItem from="1680865244101" duration="2827000" />
     </task>
     <servers />
   </component>

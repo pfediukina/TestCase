@@ -1,24 +1,36 @@
+using System;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
 
-public class PlayFabLogin : MonoBehaviour
+public class PlayfabLogin : MonoBehaviour
 {
-    public void Start()
+    public Action OnSuccessLogin;
+    public Action OnFailtureLogin;
+    public void LoginAsGuest()
     {
-        var request = new LoginWithCustomIDRequest { CustomId = "GettingStartedGuide", CreateAccount = true};
+        LoadingScreen.Instance.Enable(true);
+        var request = new LoginWithCustomIDRequest
+        {
+            CreateAccount = true,
+            CustomId = SystemInfo.deviceUniqueIdentifier
+        };
+
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
     }
 
     private void OnLoginSuccess(LoginResult result)
     {
-        Debug.Log("Congratulations, you made your first successful API call!");
+        LoadingScreen.Instance.Enable(false);
+        Debug.Log("Login successful!");
+        OnSuccessLogin?.Invoke();
     }
 
     private void OnLoginFailure(PlayFabError error)
     {
-        Debug.LogWarning("Something went wrong with your first API call.  :(");
-        Debug.LogError("Here's some debug information:");
-        Debug.LogError(error.GenerateErrorReport());
+        LoadingScreen.Instance.Enable(false);
+        Debug.LogError("Login failed: " + error.GenerateErrorReport());
+        Popup.Instance.Enable(true,error.GenerateErrorReport(), 5);
+        OnFailtureLogin?.Invoke();
     }
 }
