@@ -24,15 +24,19 @@ public class MenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _pf.OnSuccessLogin += () =>
-        {
-            ShowMainMenu();
-            _isLogged = true;
-        };
+        Player.Instance.OnShopLoaded += SuccessLogin;
+    }
+
+    private void SuccessLogin()
+    {
+        ShowMainMenu();
+        LoadingScreen.Instance.Enable(false);
+        _isLogged = true;
     }
 
     public void ShowMainMenu()
     {
+        //LoadingScreen.Instance.Enable(false); 
         _login.Enable(false);
         _shop.Enable(false);
         _mainMenu.SetActive(true);

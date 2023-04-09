@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     
     private HashSet<BallData> _balls = new HashSet<BallData>();
     private HashSet<ItemInstance> _bought = new HashSet<ItemInstance>();
-    private int oldGC = 0;
     
     private void Awake()
     {
@@ -59,9 +58,17 @@ public class Player : MonoBehaviour
                 "highscore"
             }
         };
-        PlayFabClientAPI.GetPlayerStatistics(req, ctx => SetHighscore(ctx.Statistics[0].Value), error => Debug.LogError(error));
+        PlayFabClientAPI.GetPlayerStatistics(req, OnStatisticsSuccess, error => Debug.LogError(error));
     }
-    
+
+    private void OnStatisticsSuccess(GetPlayerStatisticsResult result)
+    {
+        if(result.Statistics.Count != 0)
+            SetHighscore(result.Statistics[0].Value);
+        else
+            SetHighscore(0);
+    }
+
     private void GetInventory()
     {
         _bought.Clear();
@@ -81,6 +88,7 @@ public class Player : MonoBehaviour
         }
 
         CurrentBallData ??= _balls.Where(p => p.isBought == true).FirstOrDefault();
+        Debug.Log(CurrentBallData);
         if (!IsShopLoaded)
         {
             OnShopLoaded?.Invoke();
@@ -162,7 +170,7 @@ public class Player : MonoBehaviour
 
     private void OnAddingGCSuccess(ModifyUserVirtualCurrencyResult res)
     {
-        oldGC = GC;
+        
     }
 
     public void CollectCoins()

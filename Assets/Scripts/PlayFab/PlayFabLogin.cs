@@ -23,6 +23,7 @@ public class PlayfabLogin : MonoBehaviour
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("Login successful!");
+        LoadingScreen.Instance.Enable(false);
         OnSuccessLogin?.Invoke();
         Player.Instance.GetPlayerData();
     }
