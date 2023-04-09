@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -21,9 +22,9 @@ public class PlayfabLogin : MonoBehaviour
 
     private void OnLoginSuccess(LoginResult result)
     {
-        LoadingScreen.Instance.Enable(false);
         Debug.Log("Login successful!");
         OnSuccessLogin?.Invoke();
+        Player.Instance.GetPlayerData();
     }
 
     private void OnLoginFailure(PlayFabError error)

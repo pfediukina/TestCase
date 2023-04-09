@@ -17,7 +17,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/c5e559f202494fca924a11c640c65b816c000/fe/31455bbf/02000052pdb.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Settings.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/c5e559f202494fca924a11c640c65b816c000/1f/fa29de8a/02000069pdb.il" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,7 +80,15 @@
       <workItem from="1680849172973" duration="1706000" />
       <workItem from="1680850915626" duration="2808000" />
       <workItem from="1680858573778" duration="3723000" />
-      <workItem from="1680865244101" duration="2827000" />
+      <workItem from="1680865244101" duration="5771000" />
+      <workItem from="1680938894149" duration="7805000" />
+      <workItem from="1680947357645" duration="128000" />
+      <workItem from="1680947534779" duration="3196000" />
+      <workItem from="1680951114651" duration="9305000" />
+      <workItem from="1680973904609" duration="1717000" />
+      <workItem from="1681024947766" duration="1081000" />
+      <workItem from="1681030605573" duration="9793000" />
+      <workItem from="1681048022961" duration="11978000" />
     </task>
     <servers />
   </component>

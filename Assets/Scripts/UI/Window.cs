@@ -14,7 +14,7 @@ public class Window : MonoBehaviour
         _canvas = GetComponent<CanvasGroup>();
     }
 
-    public void Enable(bool enable)
+    public virtual void Enable(bool enable)
     {
         if (enable) ShowScreen();
         else HideScreen();
@@ -22,6 +22,7 @@ public class Window : MonoBehaviour
     
     private void ShowScreen()
     {
+        if(_canvas == null) return;
         _canvas.alpha = 1;
         _canvas.blocksRaycasts = true;
     }

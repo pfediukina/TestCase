@@ -1,28 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerUpHandler, IPointerDownHandler
+public class PlayerInput : MonoBehaviour //, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    public void OnBeginDrag(PointerEventData eventData)
+    private PlayerActions _actions;
+    private Dictionary<InputAction, Controller> activeControls = new Dictionary<InputAction, Controller>();
+
+    private void Awake()
     {
-        Debug.Log("OnBeginDrag");
+        _actions = new PlayerActions();
+        _actions.Enable();
+        _actions.Touch.Touch1.started += (ctx) => OnPointerDown(_actions.Touch.Touch1Pos, _actions.Touch.Touch1Pos.ReadValue<Vector2>());
+        _actions.Touch.Touch2.started += (ctx) => OnPointerDown(_actions.Touch.Touch2Pos, _actions.Touch.Touch2Pos.ReadValue<Vector2>());
+        
+        _actions.Touch.Touch1.canceled += (ctx) => UnassignTouch(_actions.Touch.Touch1Pos);
+        _actions.Touch.Touch2.canceled += (ctx) => UnassignTouch(_actions.Touch.Touch2Pos);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    private void FixedUpdate()
     {
-        Debug.Log("OnDrag");
+        foreach (var pair in activeControls)
+        {
+            UpdateControl(pair.Key, pair.Value);
+        }
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    private void UpdateControl(InputAction action, Controller controller)
     {
-        Debug.Log("OnPointerUp");
+        controller.Move(action.ReadValue<Vector2>());
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void AssignTouch(InputAction touch, Controller controller)
     {
-        Debug.Log("OnPointerDown");
+        controller.ResetParent(true);
+        activeControls.Add(touch, controller);
+    }
+
+    private void UnassignTouch(InputAction touch)
+    {
+        if (activeControls.ContainsKey(touch))
+        {
+            activeControls[touch].ResetParent(false);
+            activeControls.Remove(touch);
+        }
+    }
+    
+    public void OnPointerDown(InputAction action, Vector2 screenPosition)
+    {
+        var pos = Camera.main.ScreenToWorldPoint(screenPosition);
+        pos.z = 0;
+        foreach(var col in Physics2D.OverlapCircleAll(pos, 0.25f))
+        {
+            if (col.TryGetComponent<Controller>(out var controller))
+            {
+                //controller.Move(pos);
+                AssignTouch(action, controller);
+            }
+        }
     }
 }

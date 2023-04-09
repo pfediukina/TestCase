@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class DefeatArea : MonoBehaviour
 {
+   public Action OnDefeat;
+   
    private void OnTriggerEnter2D(Collider2D col)
    {
       if (col.CompareTag("ball"))
       {
-         SceneManager.LoadScene(0);
+         col.gameObject.SetActive(false);
+         OnDefeat?.Invoke();
       }
    }
 }

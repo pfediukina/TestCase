@@ -8,16 +8,16 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private PlayfabLogin _pf;
     
-    [SerializeField] private GameObject _login;
+    [SerializeField] private Window _login;
     [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _shop;
+    [SerializeField] private ShopMenu _shop;
 
     private static bool _isLogged = false;
 
     private void Awake()
     {
         if (!_isLogged)
-            _login.SetActive(true);
+            _login.Enable(true);
         else
             ShowMainMenu();
     }
@@ -33,23 +33,19 @@ public class MenuManager : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        _login.SetActive(false);
-        _shop.SetActive(false);
+        _login.Enable(false);
+        _shop.Enable(false);
         _mainMenu.SetActive(true);
-    }
-
-    public void ShowLogin()
-    {
-        _shop.SetActive(false);
-        _mainMenu.SetActive(false);
-        _login.SetActive(true); 
     }
     
     public void ShowShopMenu()
     {
-        _login.SetActive(false);
+        _login.Enable(false);
         _mainMenu.SetActive(false);
-        _shop.SetActive(true);
+        _shop.Enable(true);
+        LoadingScreen.Instance.Enable(true); 
+        if(Player.Instance.IsShopLoaded)
+            _shop.ShowShop();
     }
 
     public void StartGame()

@@ -1,5 +1,4 @@
 using System;
-using PlayFab.PfEditor.EditorModels;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
