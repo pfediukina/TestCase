@@ -4,6 +4,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour, ILootable
 {
     [SerializeField] private int _coins;
+    private CoinFactory _factory;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("ball"))
@@ -14,7 +15,7 @@ public class Coin : MonoBehaviour, ILootable
 
     public void OnLoot()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         SoundManager.Instance.PlaySound(SoundTag.COLLECT_SOUND);
         Player.Instance.CollectCoins();
     }
