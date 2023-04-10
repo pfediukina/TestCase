@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private PlayfabLogin _pf;
+    [SerializeField] private PlayFabLogin _pf;
     
     [SerializeField] private Window _login;
     [SerializeField] private GameObject _mainMenu;

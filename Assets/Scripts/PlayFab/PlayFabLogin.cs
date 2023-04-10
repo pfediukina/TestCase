@@ -4,10 +4,8 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
 
-public class PlayfabLogin : MonoBehaviour
+public class PlayFabLogin : MonoBehaviour
 {
-    public Action OnSuccessLogin;
-    public Action OnFailtureLogin;
     public void LoginAsGuest()
     {
         LoadingScreen.Instance.Enable(true);
@@ -23,7 +21,6 @@ public class PlayfabLogin : MonoBehaviour
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("Login successful!");
-        OnSuccessLogin?.Invoke();
         Player.Instance.GetPlayerData();
     }
 
@@ -32,6 +29,5 @@ public class PlayfabLogin : MonoBehaviour
         LoadingScreen.Instance.Enable(false);
         Debug.LogError("Login failed: " + error.GenerateErrorReport());
         Popup.Instance.Enable(true,error.GenerateErrorReport(), 5);
-        OnFailtureLogin?.Invoke();
     }
 }
